@@ -1,8 +1,8 @@
 var links = [];
 
-function  createNewLink(titel, url, sender)
+function  createNewLink(title, url, sender)
 {
-    links.push({id :links.length, titel: titel, url : url, ranking: 0,sender : sender, Date : new Date() });
+    links.push({id :links.length, title: title, url : url, ranking: 0,sender : sender, date : new Date() });
 }
 
 function getAllLinks(){
@@ -10,8 +10,12 @@ function getAllLinks(){
 }
 
 function getLink(id){
-    return notes[id];
+    return links[id];
 }
 
-module.exports = {createNewLink : createNewLink, getAllLinks : getAllLinks, getLink : getLink};
+function deleteLink(id){
+  links.splice(id,1);
+}
+
+module.exports = {createNewLink : createNewLink, getAllLinks : getAllLinks, getLink : getLink, deleteLink : deleteLink};
  
