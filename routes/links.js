@@ -37,7 +37,6 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    console.log(JSON.stringify(req.body));
     repo.createNewLink(req.body.title, req.body.url, req.body.sender);
     res.redirect('/');
 });
