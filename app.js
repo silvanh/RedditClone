@@ -10,9 +10,9 @@ var links = require('./routes/links');
 var app = express();
 
 //Sample Data:
-repo.createNewLink("Eintrag1", "www.google.ch", "manuel");
-repo.createNewLink("Eintrag2", "www.ithinkispider.com", "silvan");
-repo.createNewLink("Eintrag3", "www.reddit.com", "stolze");
+repo.createNewLink("Eintrag1", "http://www.google.ch", "manuel");
+repo.createNewLink("Eintrag2", "http://www.ithinkispider.com", "silvan");
+repo.createNewLink("Eintrag3", "http://www.reddit.com", "stolze");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

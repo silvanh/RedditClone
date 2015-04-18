@@ -23,10 +23,8 @@ function upVote(link){
 }
 
 function downVote(link){
-  if(!(link.ranking === 0)){
     link.ranking-=1;
-  }
-}
+ }
 
 module.exports = {createNewLink : createNewLink, getAllLinks : getAllLinks, getLink : getLink, deleteLink : deleteLink, upVote : upVote, downVote : downVote};
  
