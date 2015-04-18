@@ -2,7 +2,7 @@ var links = [];
 
 function  createNewLink(title, url, sender)
 {
-    links.push({id :links.length, title: title, url : url, ranking: 0,sender : sender, date : new Date() });
+    links.push({id :links.length, title: title, url : url, ranking: 0, sender : sender, date : new Date() });
 }
 
 function getAllLinks(){
@@ -17,5 +17,16 @@ function deleteLink(id){
   links.splice(id,1);
 }
 
-module.exports = {createNewLink : createNewLink, getAllLinks : getAllLinks, getLink : getLink, deleteLink : deleteLink};
+function upVote(link){
+  link.ranking+=1;
+
+}
+
+function downVote(link){
+  if(!(link.ranking === 0)){
+    link.ranking-=1;
+  }
+}
+
+module.exports = {createNewLink : createNewLink, getAllLinks : getAllLinks, getLink : getLink, deleteLink : deleteLink, upVote : upVote, downVote : downVote};
  
