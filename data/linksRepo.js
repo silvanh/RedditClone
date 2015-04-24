@@ -14,7 +14,11 @@ function getLink(id){
 }
 
 function deleteLink(id){
-  links.splice(id,1);
+    var i= 0;
+    while(links[i].id!==id){
+        ++i;
+    }
+  links.splice(i,1);
 }
 
 function upVote(link){
