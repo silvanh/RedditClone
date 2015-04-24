@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    //var template = Handlebars.compile($("#entry-template").html());
+    var container = $("#container");
     $("#addPost").click(function(){
         var link = $("#link").val();
         if(!(link.toLowerCase().indexOf("http://") >= 0)){
@@ -20,4 +22,14 @@ $(document).ready(function(){
 		    }
 		});
     });
+    
+    var get = function() {
+        $.get('/links',function(data){
+            alert("Data loaded"+data);
+        });
+    }
+
+    var intervalID = window.setInterval(get,1000);
 });
+
+//container.html(template({ links: JSON.parse(msg)}));

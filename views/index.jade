@@ -3,10 +3,11 @@ block content
     p New Link 
     input(type="url" id="link" required)
     button(type="button" id="addPost") Post New Link
-    ul
+    div(id="container")
+      ul
         for link in links
           li
-              h1= link.title
-              a(href=link.url) #{link.url}
-              p Created by #{link.sender} on #{link.date}
-              button(type="button" id=link.id class="deletePost") Löschen
+            h1= link.title
+            a(href=link.url) #{link.url}
+            p Created by #{link.sender} on #{link.date}
+            button(type="button" id=link.id class="deletePost") Löschen
