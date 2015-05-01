@@ -1,7 +1,8 @@
 extends layout
 block content
     p New Link 
-    input(type="url" id="link" required)
+    input(type="url" id="link" required pattern="https?://.+")
+    span(class="error" id="error"  aria-alive="polite")
     button(type="button" id="addPost") Post New Link
     div(id="container")
       ul

@@ -1,8 +1,9 @@
 $(document).ready(function(){
     var template = Handlebars.compile($("#entry-template").html());
     var container = $("#container");
+    var LinkInput = $("#link");
     $("#addPost").click(function(){
-        var link = $("#link").val();
+        var link = LinkInput.val();
         if(!(link.toLowerCase().indexOf("http://") >= 0)){
         	link = "http://"+link;
         }
