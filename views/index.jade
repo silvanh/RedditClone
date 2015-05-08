@@ -1,9 +1,14 @@
 extends layout
 block content
-    p New Link 
-    input(type="url" id="link" required pattern="https?://.+")
-    span(class="error" id="error"  aria-alive="polite")
+    h1 New Link 
+    form
+      p
+        label
+           input(type="url" id="link" required pattern="https?://.+" )
+           span(class="error" aria-live="polite")
     button(type="button" id="addPost") Post New Link
+      
+      <!--input(type="submit" id="addPost" value="add new Link")-->
     div(id="container")
       ul
         for link in links

@@ -1,17 +1,27 @@
 $(document).ready(function(){
     var template = Handlebars.compile($("#entry-template").html());
     var container = $("#container");
-    var LinkInput = $("#link");
-    $("#addPost").click(function(){
-        var link = LinkInput.val();
-        if(!(link.toLowerCase().indexOf("http://") >= 0)){
-        	link = "http://"+link;
-        }
+    var linkInput = $("#link");
+    var addPost = $("#addPost");
+    var pattern = new RegExp("https?://.+");
+    var error = document.querySelector('.error');
+    
+    addPost.click(function(){
+      var link = linkInput.val();
+      if(pattern.test(link)){
+	error.innerHTML = ""; // Reset the content of the message
+	error.className = "error"; // Reset the visual state of the message
         var json = {"title":"Test", "url":link, "sender":"manuel"};
         $.post("/links", json, function(data, status){
+		linkInput.val("");
         	get();
     	});
+      }else{
+	  error.innerHTML = "please type a valid  like http(s)://***";
+	  error.className = "error active";
+      }
     });
+    
 
     var addListeners = function(){
         $(".deletePost").click(function(){
