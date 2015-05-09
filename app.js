@@ -4,9 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+
 var repo = require('./data/linksRepo');
 var routes = require('./routes/index');
 var links = require('./routes/links');
+
 var app = express();
 
 //Sample Data:
@@ -25,6 +28,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// session setup
+app.use(session({
+  secret: "redditCl0neSecret",
+  key: "sessionId",
+  cookie: {httpOnly: true}
+}));
 
 app.use('/', routes);
 app.use('/links', links);
