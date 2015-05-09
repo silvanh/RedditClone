@@ -32,8 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // session setup
 app.use(session({
   secret: "redditCl0neSecret",
-  key: "sessionId",
-  cookie: {httpOnly: true}
+  cookie: {httpOnly: true},
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.use('/', routes);

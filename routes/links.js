@@ -1,8 +1,9 @@
 var express = require('express');
 var repo = require('../data/linksRepo');
 var router = express.Router();
+var requireLogin = require('./index');
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     res.format({
         'text/plain': function(){
             res.send(JSON.stringify(repo.getAllLinks()));
@@ -36,27 +37,35 @@ router.get('/:id', function(req, res, next) {
     });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', requireLogin, createLink);
+
+function createLink(req, res, next) {
     repo.createNewLink(req.body.title, req.body.url, req.body.sender);
     res.render("index", {links: repo.getAllLinks()});
-});
+};
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:id', requireLogin, deleteLink);
+
+function deleteLink(req, res, next) {
     repo.deleteLink(Number(req.params.id));
     res.render("index", {links: repo.getAllLinks()});
-});
+};
 
-router.put('/:id/up', function(req, res, next) {
+router.put('/:id/up', requireLogin, upVote);
+
+function upVote(req, res, next) {
     var link = repo.getLink(Number(req.params.id));
     repo.upVote(link);
     res.render("link", {link : repo.getLink(Number(req.params.id))});
-});
+};
 
-router.put('/:id/down', function(req, res, next) {
+router.put('/:id/down', requireLogin, downVote);
+
+function downVote(req, res, next) {
     var link = repo.getLink(Number(req.params.id));
     repo.downVote(link);
     res.render("link", {link : repo.getLink(Number(req.params.id))});
-});
+};
 
 
 module.exports = router;

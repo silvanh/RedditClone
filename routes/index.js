@@ -1,16 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+/*var requireLogin = function requireLogin(req, res, next) {
   if(req.session.email) {
-    res.redirect('/links');
+    next();
   } else {
     res.sendfile('public/login.html');
   }
+}*/
+/* GET home page. */
+router.get('/', function(req, res) {
+  res.sendfile('public/login.html');
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login', function(req, res) {
   if(req.session.email) {
     res.send(req.session.email);
   } else {
@@ -18,7 +21,7 @@ router.get('/login', function(req, res, next) {
   }
 });
 
-router.post('/login', function(req, res){
+router.post('/login', function(req, res) {
   req.session.email = req.body.email;
   res.redirect('/links');
 });
@@ -28,10 +31,12 @@ router.post('/logout', function(req, res) {
     if(err) {
       console.log(err);
     } else {
-      console.log('logout');
       res.redirect('/');
     }
   });
 });
 
+
+
 module.exports = router;
+//module.exports = requireLogin;
