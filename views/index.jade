@@ -1,6 +1,8 @@
 extends layout
 block content
-    h1 New Link 
+    h1 Hello #{session.email}
+    button(type="submit" id="logout") Logout
+    h3 New Link 
     form
       p
         label

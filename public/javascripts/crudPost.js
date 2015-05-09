@@ -5,6 +5,7 @@ $(document).ready(function(){
     var addPost = $("#addPost");
     var pattern = new RegExp("https?://.+");
     var error = document.querySelector('.error');
+    var logout = $("#logout");
     
     addPost.click(function(){
       var link = linkInput.val();
@@ -22,6 +23,9 @@ $(document).ready(function(){
       }
     });
     
+    logout.click(function () {
+        $.post("/logout");
+    })
 
     var addListeners = function(){
         $(".deletePost").click(function(){

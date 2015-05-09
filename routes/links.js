@@ -8,13 +8,13 @@ router.get('/', function(req, res, next) {
             res.send(JSON.stringify(repo.getAllLinks()));
         },
         'text/html': function(){
-            res.render("index", {links: repo.getAllLinks()});
+            res.render("index", {links: repo.getAllLinks(), session: req.session});
         },
         'application/json': function(){
             res.json(repo.getAllLinks());
         },
         'default': function() {
-            res.render("index", {links: repo.getAllLinks()});
+            res.render("index", {links: repo.getAllLinks(), session: req.session});
         }
     });
 });

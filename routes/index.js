@@ -20,14 +20,15 @@ router.get('/login', function(req, res, next) {
 
 router.post('/login', function(req, res){
   req.session.email = req.body.email;
-  res.end('done');
+  res.redirect('/links');
 });
 
-router.delete('/login', function(req, res) {
+router.post('/logout', function(req, res) {
   req.session.destroy(function(err) {
     if(err) {
       console.log(err);
     } else {
+      console.log('logout');
       res.redirect('/');
     }
   });
