@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/*var requireLogin = function requireLogin(req, res, next) {
+var requireLogin = function requireLogin(req, res, next) {
   if(req.session.email) {
     next();
   } else {
     res.sendfile('public/login.html');
   }
-}*/
+}
 /* GET home page. */
 router.get('/', function(req, res) {
   res.sendfile('public/login.html');
@@ -39,4 +39,4 @@ router.post('/logout', function(req, res) {
 
 
 module.exports = router;
-//module.exports = requireLogin;
+module.exports = requireLogin;
