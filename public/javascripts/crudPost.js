@@ -10,8 +10,8 @@ $(document).ready(function(){
     addPost.click(function(){
       var link = linkInput.val();
       if(pattern.test(link)){
-	error.innerHTML = ""; // Reset the content of the message
-	error.className = "error"; // Reset the visual state of the message
+	   	error.innerHTML = ""; // Reset the content of the message
+	    error.className = "error"; // Reset the visual state of the message
         var json = {"title":"Test", "url":link, "sender":"manuel"};
         $.post("/links", json, function(data, status){
 		linkInput.val("");

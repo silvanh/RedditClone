@@ -1,24 +1,20 @@
 extends layout
 block content
-    h1 Hello #{session.email}
-    button(type="submit" id="logout") Logout
-    h3 New Link 
-    form
-      p
-        label
-           input(type="url" id="link" required pattern="https?://.+" )
-           span(class="error" aria-live="polite")
-    button(type="button" id="addPost") Post New Link
-      
-      <!--input(type="submit" id="addPost" value="add new Link")-->
-    div(id="container")
+    div(class="container")
+      h3 New Link 
+      form
+        p
+          label(class="control-label error" for="inputError")
+          input(type="url" id="link" required pattern="https?://.+" )
+      button(type="button" id="addPost" class="btn btn-primary btn-sm") Post New Link
+    div(class="container")
       ul
         for link in links
           li
             h1= link.title
             a(href=link.url) #{link.url}
             p Created by #{link.sender} on #{link.date}
-            button(type="button" id=link.id class="deletePost") Löschen
+            button(type="button" id=link.id class="deletePost btn btn-primary btn-sm") Löschen
         script( id="entry-template" type="text/x-handlebars-template").
             <ul>
             {{#each links}}
@@ -26,7 +22,7 @@ block content
                     <h1>{{title}}</h1>
                     <a href={{url}}>{{url}}</a>
                     <p>Created by {{sender}} on {{date}}</p>
-                    <button type="button" id={{id}} class="deletePost">Löschen</button>
+                    <button type="button" id={{id}} class="deletePost btn btn-primary btn-sm">Löschen</button>
                 </li>
             {{/each}}
             </ul>
