@@ -1,9 +1,11 @@
 var express = require('express');
 var repo = require('../data/linksRepo');
 var router = express.Router();
-var requireLogin = require('./index');
+var index = require('./index.js');
 
-router.get('/', function (req, res, next) {
+router.get('/', index.requireLogin, getLinks);
+
+function getLinks(req, res, next) {
     res.format({
         'text/plain': function(){
             res.send(JSON.stringify(repo.getAllLinks()));
@@ -18,9 +20,11 @@ router.get('/', function (req, res, next) {
             res.render("index", {links: repo.getAllLinks(), session: req.session});
         }
     });
-});
+};
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', index.requireLogin, getLinkById);
+
+function getLinkById(req, res, next) {
     res.format({
         'text/plain': function(){
             res.send(JSON.stringify(repo.getLink(Number(req.params.id))));
@@ -35,23 +39,23 @@ router.get('/:id', function(req, res, next) {
             res.render("link", {link : repo.getLink(Number(req.params.id))});
         }
     });
-});
+};
 
-router.post('/', requireLogin, createLink);
+router.post('/', index.requireLogin, createLink);
 
 function createLink(req, res, next) {
     repo.createNewLink(req.body.title, req.body.url, req.body.sender);
     res.render("index", {links: repo.getAllLinks()});
 };
 
-router.delete('/:id', requireLogin, deleteLink);
+router.delete('/:id', index.requireLogin, deleteLink);
 
 function deleteLink(req, res, next) {
     repo.deleteLink(Number(req.params.id));
     res.render("index", {links: repo.getAllLinks()});
 };
 
-router.put('/:id/up', requireLogin, upVote);
+router.put('/:id/up', index.requireLogin, upVote);
 
 function upVote(req, res, next) {
     var link = repo.getLink(Number(req.params.id));
@@ -59,7 +63,7 @@ function upVote(req, res, next) {
     res.render("link", {link : repo.getLink(Number(req.params.id))});
 };
 
-router.put('/:id/down', requireLogin, downVote);
+router.put('/:id/down', index.requireLogin, downVote);
 
 function downVote(req, res, next) {
     var link = repo.getLink(Number(req.params.id));
