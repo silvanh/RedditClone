@@ -48,6 +48,7 @@ $(document).ready(function(){
     var get = function() {
         $.get('/links',function(data){
             container.html(template({ links: JSON.parse(data) }));
+            addListeners();
         });
     }
 
