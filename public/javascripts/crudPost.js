@@ -1,8 +1,9 @@
 $(document).ready(function(){
-    var template = Handlebars.compile($("#entry-template").html());
-    var container = $("#container");
+    var template = Handlebars.compile($("#template").html());
+    var container = $(".container");
     var linkInput = $("#link");
     var addPost = $("#addPost");
+    var errorMessage = $("#error-message");
     var pattern = new RegExp("https?://.+");
     var error = document.querySelector('.error');
     var logout = $("#logout");
@@ -10,6 +11,7 @@ $(document).ready(function(){
     addPost.click(function(){
       var link = linkInput.val();
       if(pattern.test(link)){
+        errorMessage.removeClass("has-error");
 	   	error.innerHTML = ""; // Reset the content of the message
 	    error.className = "error"; // Reset the visual state of the message
         var json = {"title":"Test", "url":link, "sender":"manuel"};
@@ -18,19 +20,19 @@ $(document).ready(function(){
         	get();
     	});
       }else{
-	  error.innerHTML = "please type a valid  like http(s)://***";
-	  error.className = "error active";
+        errorMessage.addClass("has-error");
+	    error.innerHTML = "Please insert a valid link";
+	    error.className = "error active";
       }
     });
     
-    logout.click(function () {
+    logout.click(function() {
         $.post("/logout");
-    })
+    });
 
     var addListeners = function(){
         $(".deletePost").click(function(){
             var linkId = $(this).attr("id");
-            console.log(linkId);
             $.ajax({
                 url: '/links/'+linkId,
                 type: 'DELETE',
@@ -45,8 +47,7 @@ $(document).ready(function(){
     
     var get = function() {
         $.get('/links',function(data){
-            container.html(template({ links: JSON.parse(data)}));
-            addListeners();
+            container.html(template({ links: JSON.parse(data) }));
         });
     }
 

@@ -1,17 +1,26 @@
 var express = require('express');
 var router = express.Router();
+var repo = require('../data/linksRepo');
+
+var testUser = { email: "yourname@reddit.com", password:"pw"};
 
 var requireLogin = function requireLogin(req, res, next) {
-  if(req.session.email) {
+  if(typeof req.session === 'undefined') res.render("links", {links: repo.getAllLinks(), isLoggedIn: isLoggedIn(req)});
+  if(req.session.email == testUser.email) {
     next();
   } else {
-    res.redirect('/login.html');
+    res.render("links", {links: repo.getAllLinks(), isLoggedIn: isLoggedIn(req)});
   }
+}
+
+function isLoggedIn(req) {
+  if(typeof req.session === 'undefined') return false;
+  return req.session.email === testUser.email;
 }
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.redirect('/login.html');
+  res.render("links", {links: repo.getAllLinks(), isLoggedIn: isLoggedIn(req)});
 });
 
 router.get('/login', requireLogin, getLoginInformation);
@@ -22,7 +31,7 @@ function getLoginInformation(req, res) {
 
 router.post('/login', function(req, res) {
   req.session.email = req.body.email;
-  res.redirect('/links');
+  res.render("links", {links: repo.getAllLinks(), session: req.session, isLoggedIn: isLoggedIn(req)});
 });
 
 router.post('/logout', requireLogin, logout);
@@ -32,10 +41,11 @@ function logout(req, res) {
     if(err) {
       console.log(err);
     } else {
-      res.redirect('/login.html');
+      res.render("links", {links: repo.getAllLinks(), isLoggedIn: isLoggedIn(req)});
     }
   });
 };
 
 module.exports = router;
 module.exports.requireLogin = requireLogin;
+module.exports.isLoggedIn = isLoggedIn;

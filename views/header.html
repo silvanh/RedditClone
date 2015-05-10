@@ -7,15 +7,15 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">reddit clone</a>
+    <a class="navbar-brand" href="/">reddit clone</a>
   </div>
 
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <form class="navbar-form navbar-left" role="login">
+      <form class="navbar-form navbar-left" role="login" name="login" action="login" method="post" accept-charset="utf-8">
         <div class="form-group">
-          <input type="email" class="form-control" placeholder="email">
-          <input type="password" class="form-control" placeholder="password">
+          <input type="email" class="form-control" placeholder="yourname@reddit.com" name="email" required>
+          <input type="password" class="form-control" placeholder="password" name="password" required>
         </div>
         <button type="submit" class="btn btn-default">Login</button>
       </form>
@@ -23,3 +23,4 @@
   </div>
 </div>
 </nav>
+  
