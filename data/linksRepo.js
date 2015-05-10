@@ -4,7 +4,7 @@ var pattern = new RegExp("https?://.+");
 function  createNewLink(title, url, sender)
 {
    if(pattern.test(url)){
-      links.push({id :links.length, title: title, url : url, ranking: 0, sender : sender, date : new Date() });
+      links.push({id :links.length, title: title, url : url, ranking: 0, sender : sender, date : new Date().toLocaleDateString() });
    }
 }
 
