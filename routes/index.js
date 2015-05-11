@@ -5,11 +5,11 @@ var repo = require('../data/linksRepo');
 var testUser = { email: "yourname@reddit.com", password:"pw"};
 
 var requireLogin = function requireLogin(req, res, next) {
-  if(typeof req.session === 'undefined') res.render("index", {links: repo.getAllLinks(), isLoggedIn: isLoggedIn(req)});
+  if(typeof req.session === 'undefined') res.render("index", {isLoggedIn: isLoggedIn(req)});
   if(req.session.email == testUser.email) {
     next();
   } else {
-    res.render("index", {links: repo.getAllLinks(), isLoggedIn: isLoggedIn(req)});
+    res.render("index", {isLoggedIn: false});
   }
 }
 
@@ -20,7 +20,7 @@ function isLoggedIn(req) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render("index", {links: repo.getAllLinks(), isLoggedIn: isLoggedIn(req)});
+  res.render("index", {links: repo.getAllLinks(), session: req.session, isLoggedIn: isLoggedIn(req)});
 });
 
 router.get('/login', requireLogin, getLoginInformation);
@@ -41,7 +41,7 @@ function logout(req, res) {
     if(err) {
       console.log(err);
     } else {
-      res.render("index", {links: repo.getAllLinks(), isLoggedIn: isLoggedIn(req)});
+      res.render("index", {isLoggedIn: isLoggedIn(req)});
     }
   });
 };

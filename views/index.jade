@@ -1,10 +1,10 @@
 extends layout
 block content
   if isLoggedIn
-    include loggedInHeader.html
+    include loggedInHeader.jade
     include links.jade
   else
-    include loggedOutHeader.html
+    include loggedOutHeader.jade
     div(class="container")
       div(class="jumbotron")
         h1 reddit clone
