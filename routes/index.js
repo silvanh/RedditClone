@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var repo = require('../data/linksRepo');
 
-var testUser = { email: "yourname@reddit.com", password:"pw"};
+var testUser = { name: "Geronimo", email: "yourname@reddit.com", password:"pw"};
 
 var requireLogin = function requireLogin(req, res, next) {
   if(typeof req.session === 'undefined') res.render("index", {isLoggedIn: isLoggedIn(req)});
@@ -20,18 +20,18 @@ function isLoggedIn(req) {
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render("index", {links: repo.getAllLinks(), session: req.session, isLoggedIn: isLoggedIn(req)});
+  res.render("index", {links: repo.getAllLinks(), testUser: testUser, isLoggedIn: isLoggedIn(req)});
 });
 
 router.get('/login', requireLogin, getLoginInformation);
 
 function getLoginInformation(req, res) {
-   res.send(req.session.email);
+   res.send(JSON.stringify(testUser));
 };
 
 router.post('/login', function(req, res) {
   req.session.email = req.body.email;
-  res.render("index", {links: repo.getAllLinks(), session: req.session, isLoggedIn: isLoggedIn(req)});
+  res.render("index", {links: repo.getAllLinks(), testUser: testUser, isLoggedIn: isLoggedIn(req)});
 });
 
 router.post('/logout', requireLogin, logout);
@@ -49,3 +49,4 @@ function logout(req, res) {
 module.exports = router;
 module.exports.requireLogin = requireLogin;
 module.exports.isLoggedIn = isLoggedIn;
+module.exports.testUser = testUser;

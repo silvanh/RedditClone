@@ -25,8 +25,8 @@ $(document).ready(function(){
                 url: '/login',
                 type: 'GET',
                 success: function(result) {
-                   var json = {"title":"Test", "url":link, "sender":result};
-                   console.log(json);
+                   var name = JSON.parse(result).name;
+                   var json = {"title":"Test", "url":link, "sender":name};
                    addPost(json);
                 }
         });
