@@ -2,13 +2,11 @@ $(document).ready(function(){
     var template = Handlebars.compile($("#template").html());
     var container = $(".container");
     var linkInput = $("#link");
-    var addPost = $("#addPost");
     var errorMessage = $("#error-message");
     var pattern = new RegExp("https?://.+");
     var error = document.querySelector('.error');
-    var logout = $("#logout");
     
-    addPost.click(function(){
+    $("#addPost").click(function(){
       var link = linkInput.val();
       if(pattern.test(link)){
         errorMessage.removeClass("has-error");
@@ -16,7 +14,7 @@ $(document).ready(function(){
 	    error.className = "error"; // Reset the visual state of the message
         var json = {"title":"Test", "url":link, "sender":"manuel"};
         $.post("/links", json, function(data, status){
-		linkInput.val("");
+		  	linkInput.val("");
         	get();
     	});
       }else{
@@ -26,7 +24,7 @@ $(document).ready(function(){
       }
     });
     
-    logout.click(function() {
+    $("#logout").click(function() {
         $.post("/logout");
     });
 
