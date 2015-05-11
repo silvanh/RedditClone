@@ -10,19 +10,34 @@ $(document).ready(function(){
       var link = linkInput.val();
       if(pattern.test(link)){
         errorMessage.removeClass("has-error");
-	   	error.innerHTML = ""; // Reset the content of the message
-	    error.className = "error"; // Reset the visual state of the message
-        var json = {"title":"Test", "url":link, "sender":"manuel"};
-        $.post("/links", json, function(data, status){
-		  	linkInput.val("");
-        	get();
-    	});
+	   	error.innerHTML = "";
+	    error.className = "error";
+        getEmail(link);
       }else{
         errorMessage.addClass("has-error");
 	    error.innerHTML = "Please insert a valid link";
 	    error.className = "error active";
       }
     });
+    
+    function getEmail(link) {
+        $.ajax({
+                url: '/login',
+                type: 'GET',
+                success: function(result) {
+                   var json = {"title":"Test", "url":link, "sender":result};
+                   console.log(json);
+                   addPost(json);
+                }
+        });
+    }
+    
+    function addPost(json) {
+       $.post("/links", json, function(data, status){
+		  	linkInput.val("");
+        	get();
+    	}); 
+    }
     
     $("#logout").click(function() {
         $.post("/logout");

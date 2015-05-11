@@ -13,7 +13,7 @@ var links = require('./routes/links');
 var app = express();
 
 //Sample Data:
-repo.createNewLink("Eintrag1", "http://www.google.ch", "manuel");
+repo.createNewLink("Eintrag1", "https://news.ycombinator.com/", "manuel");
 repo.createNewLink("Eintrag2", "http://www.ithinkispider.com", "silvan");
 repo.createNewLink("Eintrag3", "http://www.reddit.com", "stolze");
 
