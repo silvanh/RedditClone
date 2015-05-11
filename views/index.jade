@@ -1,6 +1,7 @@
 extends layout
 block content
   if isLoggedIn
+    script(type='text/javascript', src="javascripts/crudPost.js")
     include loggedInHeader.jade
     include links.jade
   else
