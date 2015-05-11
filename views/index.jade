@@ -1,13 +1,13 @@
 extends layout
 block content
   if isLoggedIn
-    script(type='text/javascript', src="javascripts/crudPost.js")
+    script(type='text/javascript', src='javascripts/crudPost.js')
     include loggedInHeader.jade
     include links.jade
   else
     include loggedOutHeader.jade
-    div(class="container")
-      div(class="jumbotron")
+    div(class='container')
+      div(class='jumbotron')
         h1 reddit clone
         p This is a Single Page App which attempts to clone some functionality of reddit
     

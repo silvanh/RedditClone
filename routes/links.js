@@ -30,13 +30,13 @@ function getLinkById(req, res, next) {
             res.send(JSON.stringify(repo.getLink(Number(req.params.id))));
         },
         'text/html': function() {
-            res.render("link", {link : repo.getLink(Number(req.params.id))});
+            res.render('link', {link : repo.getLink(Number(req.params.id))});
         },
         'application/json': function() {
             res.json(repo.getLink(Number(req.params.id)));
         },
         'default': function() {
-            res.render("link", {link : repo.getLink(Number(req.params.id))});
+            res.render('link', {link : repo.getLink(Number(req.params.id))});
         }
     });
 };
@@ -45,14 +45,14 @@ router.post('/', index.requireLogin, createLink);
 
 function createLink(req, res, next) {
     repo.createNewLink(req.body.title, req.body.url, req.body.sender);
-    res.render("index", {links: repo.getAllLinks(), testUser: index.testUser, isLoggedIn: index.isLoggedIn(req)});
+    res.render('index', {links: repo.getAllLinks(), testUser: index.testUser, isLoggedIn: index.isLoggedIn(req)});
 };
 
 router.delete('/:id', index.requireLogin, deleteLink);
 
 function deleteLink(req, res, next) {
     repo.deleteLink(Number(req.params.id));
-    res.render("index", {links: repo.getAllLinks(), testUser: index.testUser, isLoggedIn: index.isLoggedIn(req)});
+    res.render('index', {links: repo.getAllLinks(), testUser: index.testUser, isLoggedIn: index.isLoggedIn(req)});
 };
 
 router.put('/:id/up', index.requireLogin, upVote);

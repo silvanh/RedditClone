@@ -1,22 +1,22 @@
 $(document).ready(function(){
-    var template = Handlebars.compile($("#template").html());
-    var container = $(".container");
-    var linkInput = $("#link");
-    var errorMessage = $("#error-message");
-    var pattern = new RegExp("https?://.+");
+    var template = Handlebars.compile($('#template').html());
+    var container = $('.container');
+    var linkInput = $('#link');
+    var errorMessage = $('#error-message');
+    var pattern = new RegExp('https?://.+');
     var error = document.querySelector('.error');
     
-    $("#addPost").click(function(){
+    $('#addPost').click(function(){
       var link = linkInput.val();
       if(pattern.test(link)){
-        errorMessage.removeClass("has-error");
-	   	error.innerHTML = "";
-	    error.className = "error";
+        errorMessage.removeClass('has-error');
+	   	error.innerHTML = '';
+	    error.className = 'error';
         getEmail(link);
       }else{
-        errorMessage.addClass("has-error");
-	    error.innerHTML = "Please insert a valid link";
-	    error.className = "error active";
+        errorMessage.addClass('has-error');
+	    error.innerHTML = 'Please insert a valid link';
+	    error.className = 'error active';
       }
     });
     
@@ -26,26 +26,26 @@ $(document).ready(function(){
                 type: 'GET',
                 success: function(result) {
                    var name = JSON.parse(result).name;
-                   var json = {"title":"Test", "url":link, "sender":name};
+                   var json = {'title':'Test', 'url':link, 'sender':name};
                    addPost(json);
                 }
         });
     }
     
     function addPost(json) {
-       $.post("/links", json, function(data, status){
-		  	linkInput.val("");
+       $.post('/links', json, function(data, status){
+		  	linkInput.val('');
         	get();
     	}); 
     }
     
-    $("#logout").click(function() {
-        $.post("/logout");
+    $('#logout').click(function() {
+        $.post('/logout');
     });
 
     var addListeners = function(){
-        $(".deletePost").click(function(){
-            var linkId = $(this).attr("id");
+        $('.deletePost').click(function(){
+            var linkId = $(this).attr('id');
             $.ajax({
                 url: '/links/'+linkId,
                 type: 'DELETE',
@@ -54,10 +54,10 @@ $(document).ready(function(){
                 }
             });
         });
-       $(".glyphicon-arrow-up").click(function(){
+       $('.glyphicon-arrow-up').click(function(){
         var linkId = $(this).parent().parent().attr("id");
-        var url = "/links/"+linkId+"/up";
-        var ranking = $(this).parent().children("h4");
+        var url = '/links/'+linkId+'/up';
+        var ranking = $(this).parent().children('h4');
         $.ajax({
             url: url,
             type: 'PUT',
@@ -67,10 +67,10 @@ $(document).ready(function(){
             }
         });
        });
-       $(".glyphicon-arrow-down").click(function(){
-        var linkId = $(this).parent().parent().attr("id");
-        var url = "/links/"+linkId+"/down";
-        var ranking = $(this).parent().children("h4");
+       $('.glyphicon-arrow-down').click(function(){
+        var linkId = $(this).parent().parent().attr('id');
+        var url = '/links/'+linkId+'/down';
+        var ranking = $(this).parent().children('h4');
         $.ajax({
             url: url,
             type: 'PUT',
