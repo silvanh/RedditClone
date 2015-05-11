@@ -20,7 +20,7 @@ node app.js
 
 Now visit `http://localhost:3000`.
 
-# lint project
+## lint project
 
 ```
 gulp
