@@ -1,5 +1,5 @@
 var links = [];
-var pattern = new RegExp("https?://.+");
+var pattern = new RegExp('https?://.+');
 var linkId = -1;
 
 function createNewLink(title, url, sender)

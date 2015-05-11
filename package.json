@@ -2,7 +2,7 @@
   "name": "RedditClone",
   "version": "1.0.0",
   "private": true,
-  "description": "This is a Single Page App built with Handlebars on the client side and Node(Express, Jade) on the server side."
+  "description": "This is a Single Page App built with Handlebars on the client side and Node(Express, Jade) on the server side.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
