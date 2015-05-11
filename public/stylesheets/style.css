@@ -1,12 +1,3 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
 input:valid{
   border: 1px solid green;
 }
@@ -20,33 +11,12 @@ input:focus:invalid {
   outline: none;
 }
 
-.error {
-  width  : 100%;
-  padding: 0;
- 
-  font-size: 90%;
-  color: white;
-  background-color: #900;
-  border-radius: 0 5px 5px 0px;
- 
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+.arrow {
+  font-size: 3em; 
+  display: inline-block; 
+  position: relative;
 }
 
-.error.active {
-  padding: 0.3em;
-}
-
-#link{
-  -webkit-appearance: none;
-
-  width: 50%;
-  border: 1px solid #333;
-  margin: 0;
-
-  font-family: inherit;
-  font-size: 95%;
-
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+.voting {
+  text-align: center;
 }

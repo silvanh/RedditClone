@@ -1,20 +1,32 @@
 div(class="container")
        ul
         for link in links
-          div(class="well")
-            h3
-              a(href=link.url) #{link.url}
-            p Created by #{link.sender} on #{link.date}
-            if isLoggedIn
-              button(type="button" id=link.id class="deletePost btn btn-primary btn-sm") Delete
+          div(class="row well")
+            div(class="voting col-xs-1 col-md-1")
+              span(class="arrow glyphicon glyphicon-arrow-up" aria-hidden="true")
+              h4(class="text-center") #{link.ranking}
+              span(class="arrow glyphicon glyphicon-arrow-down" aria-hidden="true")
+            div(class="col-xs-11 col-md-11")
+              h3
+                a(href=link.url) #{link.url}
+              p Created by #{link.sender} on #{link.date}
+              if isLoggedIn
+                button(type="button" id=link.id class="deletePost btn btn-primary btn-sm") Delete
        script( id="template" type="text/x-handlebars-template").
           <ul>
           {{#each links}}
-              <div class="well">
+            <div class="row well">
+                <div class="voting col-xs-1 col-md-1">
+                  <span class="arrow glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                  <h4 class="text-center">{{ranking}}</h4>
+                  <span class="arrow glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+                </div>
+                <div class="col-xs-11 col-md-11">
                   <h3><a href={{url}}>{{url}}</a></h3>
                   <p>Created by {{sender}} on {{date}}</p>
                   <button type="button" id={{id}} class="deletePost btn btn-primary btn-sm">Delete</button>
-              </div>
+                </div>
+            </div>
           {{/each}}
           </ul>
 		  
