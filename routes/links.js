@@ -60,7 +60,7 @@ router.put('/:id/up', index.requireLogin, upVote);
 function upVote(req, res, next) {
     var link = repo.getLink(Number(req.params.id));
     repo.upVote(link);
-    res.render("link", {link : repo.getLink(Number(req.params.id))});
+    res.send(JSON.stringify(repo.getLink(Number(req.params.id))));
 };
 
 router.put('/:id/down', index.requireLogin, downVote);
@@ -68,7 +68,7 @@ router.put('/:id/down', index.requireLogin, downVote);
 function downVote(req, res, next) {
     var link = repo.getLink(Number(req.params.id));
     repo.downVote(link);
-    res.render("link", {link : repo.getLink(Number(req.params.id))});
+    res.send(JSON.stringify(repo.getLink(Number(req.params.id))));
 };
 
 

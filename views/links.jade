@@ -1,7 +1,7 @@
 div(class="container")
        ul
         for link in links
-          div(class="row well")
+          div(id=link.id class="row well")
             div(class="voting col-xs-1 col-md-1")
               span(class="arrow glyphicon glyphicon-arrow-up" aria-hidden="true")
               h4(class="text-center") #{link.ranking}
@@ -15,7 +15,7 @@ div(class="container")
        script( id="template" type="text/x-handlebars-template").
           <ul>
           {{#each links}}
-            <div class="row well">
+            <div id={{id}} class="row well">
                 <div class="voting col-xs-1 col-md-1">
                   <span class="arrow glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
                   <h4 class="text-center">{{ranking}}</h4>

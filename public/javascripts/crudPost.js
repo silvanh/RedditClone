@@ -7,6 +7,8 @@ $(document).ready(function(){
     var pattern = new RegExp("https?://.+");
     var error = document.querySelector('.error');
     var logout = $("#logout");
+    var arrowsUp = $(".glyphicon-arrow-up");
+    var arrowsDown = $(".glyphicon-arrow-down");
     
     addPost.click(function(){
       var link = linkInput.val();
@@ -28,6 +30,34 @@ $(document).ready(function(){
     
     logout.click(function() {
         $.post("/logout");
+    });
+    
+    arrowsUp.click(function(){
+        var linkId = $(this).parent().parent().attr("id");
+        var url = "/links/"+linkId+"/up";
+        var ranking = $(this).parent().children("h4");
+        $.ajax({
+            url: url,
+            type: 'PUT',
+            success: function(result){
+               var link = JSON.parse(result);
+               ranking.text(link.ranking);
+            }
+        });
+    });
+    
+    arrowsDown.click(function(){
+        var linkId = $(this).parent().parent().attr("id");
+        var url = "/links/"+linkId+"/down";
+        var ranking = $(this).parent().children("h4");
+        $.ajax({
+            url: url,
+            type: 'PUT',
+            success: function(result){
+               var link = JSON.parse(result);
+               ranking.text(link.ranking);
+            }
+        });
     });
 
     var addListeners = function(){
