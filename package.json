@@ -1,10 +1,20 @@
 {
   "name": "RedditClone",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "This is a Single Page App built with Handlebars on the client side and Node(Express, Jade) on the server side."
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/silvanh/RedditClone.git"
+  },
+  "author": "Manuel Roth <manuelroth@hotmail.ch>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/silvanh/RedditClone/issues"
   },
   "dependencies": {
     "body-parser": "~1.12.0",
@@ -15,5 +25,9 @@
     "jade": "~1.9.2",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-eslint": "^0.5.0"
   }
 }
