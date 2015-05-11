@@ -1,25 +1,20 @@
-extends layout
-block content
-  if isLoggedIn
-    include header-loggedIn.html
-  else
-    include header.html
-  div(class="container")
-     ul
-      for link in links
-        div(class="well")
-          h3
-            a(href=link.url) #{link.url}
-          p Created by #{link.sender} on #{link.date}
-          if isLoggedIn
-            button(type="button" id=link.id class="deletePost btn btn-primary btn-sm") Löschen
-     script( id="template" type="text/x-handlebars-template").
-        <ul>
-        {{#each links}}
-            <div class="well">
-                <h3><a href={{url}}>{{url}}</a></h3>
-                <p>Created by {{sender}} on {{date}}</p>
-            </div>
-        {{/each}}
-        </ul>
-    
+div(class="container")
+       ul
+        for link in links
+          div(class="well")
+            h3
+              a(href=link.url) #{link.url}
+            p Created by #{link.sender} on #{link.date}
+            if isLoggedIn
+              button(type="button" id=link.id class="deletePost btn btn-primary btn-sm") Delete
+       script( id="template" type="text/x-handlebars-template").
+          <ul>
+          {{#each links}}
+              <div class="well">
+                  <h3><a href={{url}}>{{url}}</a></h3>
+                  <p>Created by {{sender}} on {{date}}</p>
+                  <button type="button" id={{id}} class="deletePost btn btn-primary btn-sm">Delete</button>
+              </div>
+          {{/each}}
+          </ul>
+		  

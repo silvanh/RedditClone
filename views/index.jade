@@ -1,0 +1,12 @@
+extends layout
+block content
+  if isLoggedIn
+    include loggedInHeader.html
+    include links.jade
+  else
+    include loggedOutHeader.html
+    div(class="container")
+      div(class="jumbotron")
+        h1 reddit clone
+        p This is a Single Page App with attempts to clone some functionality of reddit
+    
