@@ -1,4 +1,4 @@
-# reddit clone
+# reddit clone [![Travis](https://travis-ci.org/silvanh/RedditClone.svg)](https://travis-ci.org/silvanh/RedditClone)
 
 This is a Single Page App built with Handlebars on the client side 
 and Node(Express, Jade) on the server side.
