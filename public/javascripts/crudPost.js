@@ -54,6 +54,7 @@ $(document).ready(function(){
                 }
             });
         });
+	
        $('.glyphicon-arrow-up').click(function(){
         var linkId = $(this).parent().parent().attr("id");
         var url = '/links/'+linkId+'/up';
