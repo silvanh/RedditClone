@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var port = process.env.PORT || 3000;
 
 var repo = require('./data/linksRepo');
 var routes = require('./routes/index');
@@ -72,11 +73,8 @@ app.use(function(err, req, res) {
   });
 });
 
-var server = app.listen(3000, function () {
-
+var server = app.listen(port, function () {
     var host = server.address().address;
-    var port = server.address().port;
-
     console.log('Example app listening at http://%s:%s', host, port);
 });
 
