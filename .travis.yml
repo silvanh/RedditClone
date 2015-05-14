@@ -1,8 +1,15 @@
 language: node_js
 node_js:
-  - "0.11"
-  - "0.10"
+- '0.11'
+- '0.10'
 before_install:
-  - npm install -g gulp
+- npm install -g gulp
 script:
-  - gulp
+- gulp
+deploy:
+  provider: heroku
+  api_key:
+    secure: WMbbTFvFIPr+6pJLODcnjCEutsu7AER7j6Ay71y04Iak4ZSd0nF4LVUpB90MxwanLAfpviBzWHxQ55p8CkceE5fUIHf2XRzEIug6QBpLdy4+z1C7zqYYW0zYCIPhkhvPO3uoVt30S5ZJHVCqp2vYtIXR6osJPV5UG0qjBKYfdaI=
+  app: redditclonenode
+  on:
+    repo: silvanh/RedditClone
