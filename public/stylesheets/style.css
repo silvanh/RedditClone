@@ -19,4 +19,55 @@ input:focus:invalid {
 
 .voting {
   text-align: center;
+  min-width: 6em;
+}
+
+.container {
+  line-height: 1.6875;
+  font-size: 100%;
+}
+
+@media only screen and (min-width : 320px) and (max-width : 459px) {
+  .container {
+    font-size: 75%;
+    width: 90%;
+  }
+  a { font-size: 65%;}
+  p { font-size: 100%;}
+}
+
+@media (min-width: 460px) and (max-width: 549px) {
+  .container {
+    font-size: 75%;
+    width: 90%;
+  }
+  a { font-size: 75%;}
+  p { font-size: 100%;}
+}
+
+@media (min-width: 550px) and (max-width: 600px) {
+  .container {
+    font-size: 80%;
+    width: 90%;
+  }
+  a { font-size: 85%;}
+  p { font-size: 110%;}
+}
+
+@media (min-width: 601px) and (max-width: 800px) {
+  .container {
+    font-size: 80%;
+    width: 90%;
+  }
+  a { font-size: 95%;}
+  p { font-size: 110%;}
+}
+
+@media (min-width: 801px) {
+  .container {
+    font-size: 100%;
+    width: 90%;
+  }
+  a { font-size: 100%;}
+  p { font-size: 110%;}
 }
