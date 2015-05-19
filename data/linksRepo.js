@@ -22,37 +22,28 @@ function getAllLinks(){
   return links;
 }
 
-function getLink(id){
+function findIndex(id) {
   var i= 0;
   while(links[i].id!==id){
       ++i;
   }
-  return links[i];
+  return i;
+}
+
+function getLink(id){
+  return links[findIndex(id)];
 }
 
 function deleteLink(id){
-  var i= 0;
-  while(links[i].id!==id){
-      ++i;
-  }
-  links.splice(i,1);
+  links.splice(findIndex(id),1);
 }
 
 function upVote(id){
-  var i= 0;
-  while(links[i].id!==id){
-      ++i;
-  }
-  links[i].ranking+=1;
-
+  links[findIndex(id)].ranking+=1;
 }
 
 function downVote(id){
-  var i= 0;
-  while(links[i].id!==id){
-      ++i;
-  }
-  links[i].ranking-=1;
+  links[findIndex(id)].ranking-=1;
  }
 
 module.exports = {createNewLink : createNewLink, getAllLinks : getAllLinks, getLink : getLink, deleteLink : deleteLink, upVote : upVote, downVote : downVote};
