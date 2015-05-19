@@ -5,7 +5,7 @@ var index = require('./index.js');
 
 router.get('/', getLinks);
 
-function getLinks(req, res, next) {
+function getLinks(req, res) {
     res.format({
         'text/plain': function() {
             res.send(JSON.stringify(repo.getAllLinks()));
@@ -20,11 +20,11 @@ function getLinks(req, res, next) {
             res.render("index", {links: repo.getAllLinks(), testUser: index.testUser, isLoggedIn: index.isLoggedIn(req)});
         }
     });
-};
+}
 
 router.get('/:id', getLinkById);
 
-function getLinkById(req, res, next) {
+function getLinkById(req, res) {
     res.format({
         'text/plain': function() {
             res.send(JSON.stringify(repo.getLink(Number(req.params.id))));
@@ -39,35 +39,35 @@ function getLinkById(req, res, next) {
             res.render('link', {link : repo.getLink(Number(req.params.id))});
         }
     });
-};
+}
 
 router.post('/', index.requireLogin, createLink);
 
-function createLink(req, res, next) {
+function createLink(req, res) {
     repo.createNewLink(req.body.title, req.body.url, req.body.sender);
     res.render('index', {links: repo.getAllLinks(), testUser: index.testUser, isLoggedIn: index.isLoggedIn(req)});
-};
+}
 
 router.delete('/:id', index.requireLogin, deleteLink);
 
-function deleteLink(req, res, next) {
+function deleteLink(req, res) {
     repo.deleteLink(Number(req.params.id));
     res.render('index', {links: repo.getAllLinks(), testUser: index.testUser, isLoggedIn: index.isLoggedIn(req)});
-};
+}
 
 router.put('/:id/up', index.requireLogin, upVote);
 
-function upVote(req, res, next) {
+function upVote(req, res) {
     repo.upVote(Number(req.params.id));
     res.send(JSON.stringify(repo.getLink(Number(req.params.id))));
-};
+}
 
 router.put('/:id/down', index.requireLogin, downVote);
 
-function downVote(req, res, next) {
+function downVote(req, res) {
     repo.downVote(Number(req.params.id));
     res.send(JSON.stringify(repo.getLink(Number(req.params.id))));
-};
+}
 
 
 module.exports = router;
