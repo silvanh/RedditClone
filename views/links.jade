@@ -3,9 +3,11 @@ div(class='container')
         for link in links
           div(id=link.id class='row well')
             div(class='voting col-xs-1 col-md-1')
-              span(class='arrow glyphicon glyphicon-arrow-up' aria-hidden='true')
+              button(class="vote")
+                span(class='arrow glyphicon glyphicon-arrow-up' aria-hidden='true')
               h4(class='text-center') #{link.ranking}
-              span(class='arrow glyphicon glyphicon-arrow-down' aria-hidden='true')
+              button(class="vote")
+                span(class='arrow glyphicon glyphicon-arrow-down' aria-hidden='true')
             div(class='col-xs-8 col-md-10')
               h3
                 a(href=link.url) #{link.url}
@@ -17,9 +19,9 @@ div(class='container')
           {{#each links}}
             <div id={{id}} class='row well'>
                 <div class='voting col-xs-1 col-md-1'>
-                  <span class='arrow glyphicon glyphicon-arrow-up' aria-hidden='true'></span>
+                  <button class="vote"><span class='arrow glyphicon glyphicon-arrow-up' aria-hidden='true'></span></button>
                   <h4 class='text-center'>{{ranking}}</h4>
-                  <span class='arrow glyphicon glyphicon-arrow-down' aria-hidden='true'></span>
+                  <button class="vote"><span class='arrow glyphicon glyphicon-arrow-down' aria-hidden='true'></span></button>
                 </div>
                 <div class='col-xs-8 col-md-10'>
                   <h3>

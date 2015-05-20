@@ -56,9 +56,9 @@ $(document).ready(function(){
         });
 	
        $('.glyphicon-arrow-up').click(function(){
-        var linkId = $(this).parent().parent().attr("id");
+        var linkId = $(this).parent().parent().parent().attr("id");
         var url = '/links/'+linkId+'/up';
-        var ranking = $(this).parent().children('h4');
+        var ranking = $(this).parent().parent().children('h4');
         $.ajax({
             url: url,
             type: 'PUT',
@@ -69,9 +69,9 @@ $(document).ready(function(){
         });
        });
        $('.glyphicon-arrow-down').click(function(){
-        var linkId = $(this).parent().parent().attr('id');
+        var linkId = $(this).parent().parent().parent().attr('id');
         var url = '/links/'+linkId+'/down';
-        var ranking = $(this).parent().children('h4');
+        var ranking = $(this).parent().parent().children('h4');
         $.ajax({
             url: url,
             type: 'PUT',
